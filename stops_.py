@@ -229,17 +229,11 @@ class Stops2:
                     bool_matrix=(bool_matrix).astype(numpy.int32)
                     sel_matrix=numpy.resize(numpy.insert(bool_matrix,0,0),self.pop_size)
                     rec_matrix=bool_matrix-sel_matrix
-                    if rec_matrix.any():
-                        index=numpy.where( rec_matrix > 0 )
-                        if self.can_receive(j, self.pop[index[0][0]]):
-                            self.pop[index[0][0],self.reception[j]]=min(self.pop[index[0][0],self.reception[j]]+1,self.bound[self.reception[j]])
-                            k-=1                          
+                    index=numpy.where( rec_matrix > 0 )
+                    if self.can_receive(j, self.pop[index[0][0]]):
+                        self.pop[index[0][0],self.reception[j]]=min(self.pop[index[0][0],self.reception[j]]+1,self.bound[self.reception[j]])
+                        k-=1                          
                                     
-                    else:
-                        if self.can_receive(j, self.pop[self.pop_size-1]):
-                            self.pop[self.pop_size-1,self.reception[j]]=min(self.pop[self.pop_size-1,self.reception[j]]+1,self.bound[self.reception[j]])
-                            k-=1
-
     def _step_numpy(self):
         self._expression()
         self._secretion()
