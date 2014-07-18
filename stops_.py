@@ -232,7 +232,7 @@ class Stops2:
                     index=numpy.where( rec_matrix > 0 )
                     if self.can_receive(j, self.pop[index[0][0]]):
                         self.pop[index[0][0],self.reception[j]]=min(self.pop[index[0][0],self.reception[j]]+1,self.bound[self.reception[j]])
-                        k-=1                          
+            self.env[i]=numpy.zeros(self.reception.shape[0])                          
                                     
     def _step_numpy(self):
         self._expression()
